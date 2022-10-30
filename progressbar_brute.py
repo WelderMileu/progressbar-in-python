@@ -1,21 +1,16 @@
 #!/usr/bin/python3
-import numpy as np
-from time import sleep
 import requests
 from sys import argv
 
 def main(url, w):
     try:
-        bar = []
+        f = open(w, 'r')
 
-        for x in range(100):
-            bar.append('▒')
-        
-        f  = open(w, 'r')
+        bar = []
+        for x in range(100): bar.append('▒')
         
         ls = []
-        for x in f.readlines():
-            ls.append(x.replace('\n', ''))
+        for x in f.readlines(): ls.append(x.replace('\n', ''))
         print()
 
         c = []
@@ -37,10 +32,10 @@ def main(url, w):
                     accept.append(domain)
 
                 for i in c:
-                    if int(i) == ls.index(x):
+                    if i == ls.index(x):
                         print("|{} \r".format("".join(bar)), end='')
                         bar[c.index(i)]  = "█"
-                        bar[-1] = " [{}/{}]".format(i, len(ls))
+                        bar[-1] = " [{}/{}]".format(ls.index(x), len(ls))
                         
 
             print()
